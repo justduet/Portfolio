@@ -1,0 +1,110 @@
+body, html{
+    width: 100%;
+    height: 100%;
+    overflow-x: 0;
+    overflow-y: auto;
+    margin: 0;
+}
+
+
+.home-page{
+    width: 100%;
+    height: 100%;
+	background-image: url("../images/blossoms.png"); 
+    background-repeat: no-repeat;
+	background-size: cover; 
+	background-position:right;
+    filter: brightness(90%);  
+}
+
+.logo-s{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -68%);
+    opacity: 26%;
+    filter: brightness(5%);
+}
+
+.logo{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50.4%, -69%);
+    opacity: 90%;    
+}
+
+.slogan{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-52%, 50%);
+    opacity: 91%;    
+}
+
+footer{
+    position:absolute;
+    top: 50%;
+    left: 50%;
+    opacity: 91%; 
+    width: 225px;
+    height: 50px;
+    bottom: 0;
+    transform: translate(-50%, 400%);
+
+}
+
+.button{
+    font-size: 40px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: lighter;
+    position: relative;
+    color:rgb(255, 255, 255);
+    opacity: 70%; 
+    filter: blur(.25px);
+}
+
+.button:hover{ 
+    opacity: 80%;
+    filter: blur(.1px);  
+}
+.button:active{
+    color:ivory;
+    opacity: 90%;
+}
+
+.a{
+    width: 100px;
+    height: 50px;
+    margin: 10px; 
+    position: relative;
+}
+
+.arrow{
+    animation: slide1 1s ease-in-out infinite;
+    margin-left: 9px;
+    color:rgb(255, 255, 255);
+    position: relative;
+    opacity: 80%;
+    filter: blur(.25px);   
+}
+
+.arrow:hover{
+    opacity: 80%;
+    filter: blur(.1px); 
+}
+
+.arrow:active{
+    color:ivory;
+    opacity: 90%;
+}
+
+
+@keyframes slide1 {
+    90%,100% {
+      transform: translate(0,0);
+    }
+    50% {
+      transform: translate(5px, 0);
+    }
+}
