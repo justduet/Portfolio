@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Search-Page</title>
+        <link rel="stylesheet" href="./css-styles/contact-page.css"/>
+        <link rel="stylesheet" href="./css-styles/example-product.css"/>
+        <link rel="stylesheet" href="./css-styles/shop.css"/>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"/>
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    </head>
+    <body>
+        <section class="video-container-top">
+            <iframe class="topiframe" src="https://www.youtube.com/embed/popsd2cxBHM?rel=0&controls=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=popsd2cxBHM"></iframe>
+        </section>
+        <header>
+            <nav id="hamnav">
+                <div class="flex">
+                    <button class="basket">
+                        <a href="./checkout-page.html" style="text-decoration:none;">
+                            <i class="fa">&#xf291;</i><br/>
+                            <span class="checkout">Checkout</span>
+                        </a>
+                    </button>
+                    <!-- (B) THE HAMBURGER -->
+                    <div class="flex-dropdown">
+                        <button class="hamburger">
+                            <label for="hamburger">&#9776;</label><br/>
+                            <span class="menu">Menu</span>
+                        </button>
+                        <!-- (C) MENU ITEMS -->
+                        <div id="hamitems">
+                            <a href="./shop.html">Home</a>
+                            <!-- <a href="a.html">About</a> -->
+                            <!-- <a href="c.html">Our Christmas Offerings</a> -->
+                            <a href="d.html">Shop by Occasion (n/a)</a>
+                            <a href="./search-page.html">Search</a>
+                            <a href="./contact.html">Contact Us</a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+            <a href="./index.html"><img src="/Users/nfelt/Desktop/Web_Design2/blossoms-website/images/shop-logo.png" class="shop-logo" alt="medium green shop logo"></a>
+            <section class="video-container-bottom">
+                <iframe class="bottomiframe" src="https://www.youtube.com/embed/popsd2cxBHM?rel=0&controls=0&autoplay=1&mute=1&playsinline=1&loop=1&playlist=popsd2cxBHM"></iframe>
+            </section>
+        </header>
+    <div class="contact-page">
+        <section class="flex-box1 space-between">
+            <div class="txt2">
+                <div id = "heading1">Write Us A Message</div>
+                <form action="action_page.php" style= "width:75%" >
+                  <input type="text" id="fname" name="firstname" placeholder="Name">
+                  <input type="text" id="lname" name="lastname" placeholder="Email">
+                  <select id="country" name="country">
+                    <option value="" disabled selected>Country</option>
+                    <option value="australia">Australia</option>
+                    <option value="canada">Canada</option>
+                    <option value="usa">USA</option>
+                  </select> 
+                  <span class="brmed"></span>
+                  <textarea id="subject" name="subject" placeholder="Message" style="height:200px"></textarea>
+                  <p><button class="button">Submit</button></p>
+                </form>
+            </div>
+            <div class = "txt2">
+                <div id = "heading1">Customer Service</div>
+                <span id = "c-service">We're family people, just like many of our customers. 
+                    And it's our family values that inspire us to provide you with customer service from a team of people who really care. 
+                    So, if you want to place an order, discuss a query or if things don't work out as expected (we're human and that sometimes happens!), we're here to help. 
+                    Simply use the contact details provided on this page. We also have web chat available during our opening hours if that's more your thing!
+                    Our current online hours are as follows:
+                    Monday to Friday: 9am to 5pm.
+                    Hours may be extended during Christmas and Mother's Day.
+                    It might also be useful for you to know:
+                    We aim to respond to any customer contact within one working day.
+                </span>  
+            </div>
+        </section>
+    <footer>
+        <small class="copyright">&copy; Copyright 2023,
+            <i>Blossoms Floramail.</i>
+            All rights reserved.</small>
+            <div class="flex-container">
+                <div>Contact Us
+                    <p class="info">
+                        <span class="brmed"></span>
+                        <a href="#" style="text-decoration:none;" role="button">
+                            <i class="fa fa-instagram fa-lg"></i>
+                        </a>
+                        <a href="#" style="text-decoration:none;" role="button">
+                            <i class="fa fa-facebook fa-lg"></i>
+                        </a>
+                        <a href="#" role="button">
+                            <i class="fa fa-pinterest fa-lg"></i>
+                        </a>
+                        <span class="brmed"></span>
+                        +44 09786 456822
+                        <span class="brmed"></span>
+                        f.blossoms@flowers.co.uk
+                    </p>
+                </div>
+                <div>Opening Hours
+                    <p class="info">
+                        <span class="brmed"></span>
+                        Monday-Friday 7:00-18:00
+                        <span class="brmed"></span>
+                        Saturday-Sunday 10:00-17:00
+                        <span class="brmed"></span>
+                        (Holiday Opening Times Vary)
+                    </p>
+                </div>
+                <div>About Us
+                    <p class="info">
+                        <span class="brmed"></span>
+                        The Mission
+                        <span class="brmed"></span>
+                        Our History
+                        <span class="brmed"></span>
+                        Flower Care & Tips
+                    </p>
+                </div>
+                <div class="map-container">
+                    <iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2486.0989281133493!2d-0.24722452367329042!3d51.45634007180169!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x48760ee6c0c242eb%3A0x3a5665ce81752bbf!2sUniversity%20of%20Roehampton%20London!5e0!3m2!1sen!2suk!4v1673124905987!5m2!1sen!2suk" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </footer>
+    </div>
+    </body>
+</html>

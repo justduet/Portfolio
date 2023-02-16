@@ -1,0 +1,74 @@
+
+.product-page{
+    position: relative;
+    top: 10%;
+    height: 100vh;
+
+}
+
+.flex-box{
+    width: 100vw;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flex-box > * {
+    flex: 0 0 50%;
+}
+
+div{
+    text-align: center;
+}
+
+.flex-box img{
+    position: relative;
+    height: 525px;
+    width: 550px;
+    transition: all .2s ease;
+    filter:brightness(100%);
+    border-color:rgb(233, 245, 220); 
+    transition: 0.5s all ease-in-out;      
+}
+
+img:hover{
+    transform: scale(1.05);
+}
+.txt{
+    background-size: 75% 50%;
+    color: rgb(0, 0, 0);
+    background-color: rgb(241, 247, 235);
+    margin-bottom: -10%;
+    
+}
+
+#heading{
+    font-family: 'EB Garamond';
+    font-size: 35px;
+    font-weight: lighter;
+    position: relative;
+    top: 50px;
+
+}
+
+#descript{
+    font-family: 'EB Garamond';
+    font-size: 25px;
+    font-weight: lighter;
+    position: relative;
+    top: 100px;
+
+}
+
+.button{
+    background-color: rgb(0, 0, 0);
+    opacity: 80%;
+    text-decoration: none;
+    border: none;
+    color: rgb(255, 255, 255);
+}
+
+.button:hover{
+    background-color: rgb(0, 0, 0);
+    opacity: 70%;
+}
+

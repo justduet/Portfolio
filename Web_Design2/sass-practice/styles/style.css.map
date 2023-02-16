@@ -1,0 +1,9 @@
+{
+    "version": 3,
+    "mappings": "AAIA,AAAA,IAAI,CAAC;EACD,WAAW,EALP,SAAS,EAAE,UAAU,EAAE,UAAU;EAMrC,gBAAgB,EALJ,OAAO;EAMnB,OAAO,EALD,IAAI;EAMV,UAAU,EAAE,KAAK;EACjB,OAAO,EAAE,IAAI;EACb,WAAW,EAAE,MAAM;EACnB,eAAe,EAAE,MAAM;CAC1B",
+    "sources": [
+        "../../Web_Design2/sass-practice/css/style.scss"
+    ],
+    "names": [],
+    "file": "style.css"
+}
