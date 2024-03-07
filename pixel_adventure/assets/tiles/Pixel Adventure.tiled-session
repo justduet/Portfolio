@@ -9,13 +9,14 @@
     "fileStates": {
         "Level-01.tmx": {
             "expandedObjectLayers": [
-                2
+                2,
+                3
             ],
-            "scale": 0.96,
-            "selectedLayer": 2,
+            "scale": 0.7532,
+            "selectedLayer": 0,
             "viewCenter": {
-                "x": 209.375,
-                "y": 316.1458333333333
+                "x": 227.69516728624538,
+                "y": 264.20605416887946
             }
         },
         "Level-02.tmx": {
@@ -25,8 +26,8 @@
             "scale": 0.6887,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 320.8944387977348,
-                "y": 185.13140699869314
+                "x": 321.6204443153768,
+                "y": 185.85741251633516
             }
         },
         "Pixel Adventure.tsx": {
@@ -51,6 +52,7 @@
         "Level-02.tmx",
         "Level-01.tmx"
     ],
+    "resizeMap.removeObjects": false,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,

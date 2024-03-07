@@ -34,7 +34,7 @@ class PixelAdventure extends FlameGame
     // Set up camera
     cam = CameraComponent.withFixedResolution(
       world: world,
-      width: 640,
+      width: 600,
       height: 360,
     );
     cam.viewfinder.anchor = Anchor.topLeft;
@@ -96,7 +96,7 @@ class PixelAdventure extends FlameGame
         player.horizontalMovement = 1;
         break;
       default:
-        player.horizontalMovement = 0;
+        player.horizontalMovement = 1;
         break;
     }
   }
