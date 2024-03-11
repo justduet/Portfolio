@@ -34,6 +34,8 @@ class BackgroundTile extends SpriteComponent with HasGameRef<PixelAdventure>{
     // while tileSize is the pixels
     // we need matching units, position is pixels
     if(position.y > scrollheight * tileSize){
+      // when the pattern repeats itself this places it
+      // higher than the top by -64 bits
       position.y = -tileSize;
     }
     super.update(dt);
