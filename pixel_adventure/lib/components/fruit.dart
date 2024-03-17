@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:pixel_adventure/components/custom_hitbox.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
 
@@ -21,8 +22,6 @@ class Fruit extends SpriteAnimationComponent
           size: size, // Initialize the position of the fruit.
         );
 
-  bool _collected = false;
-
   // Define a constant for the step time of the animation.
   final double stepTime = 0.05;
   final hitbox = CustomHitbox(
@@ -31,6 +30,8 @@ class Fruit extends SpriteAnimationComponent
     width: 12,
     height: 12,
   );
+
+  bool collected = false;
 
   // Override the onLoad method to load the sprite animation.
   @override
@@ -56,8 +57,12 @@ class Fruit extends SpriteAnimationComponent
     return super.onLoad(); // Call the onLoad method of the superclass.
   }
 
-  void collidedWithPlayer() {
-    if (!_collected) {
+  void collidedWithPlayer() async {
+    if (!collected) {
+      collected = true;
+      if (game.playSounds) {
+        FlameAudio.play('collect_fruit.wav', volume: game.soundVolume * .45);
+      }
       // Load the sprite animation using image and data.
       animation = SpriteAnimation.fromFrameData(
         game.images.fromCache('Items/Fruits/Collected.png'),
@@ -68,11 +73,8 @@ class Fruit extends SpriteAnimationComponent
           loop: false,
         ),
       );
-      _collected = true;
+      await animationTicker?.completed;
+      removeFromParent();
     }
-    Future.delayed(
-      const Duration(milliseconds: 300),
-      () => removeFromParent(),
-    );
   }
 }

@@ -3,31 +3,49 @@
         "height": 4300,
         "width": 2
     },
-    "activeFile": "Level-01.tmx",
+    "activeFile": "Level-02.tmx",
     "expandedProjectPaths": [
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
-        "Level-01.tmx": {
-            "expandedObjectLayers": [
-                2,
-                3
-            ],
-            "scale": 0.7532,
+        "Level-01 copy.tmx": {
+            "scale": 0.6498,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 227.69516728624538,
-                "y": 264.20605416887946
+                "x": 289.31979070483226,
+                "y": 144.65989535241607
+            }
+        },
+        "Level-01.tmx": {
+            "expandedObjectLayers": [
+                3,
+                2
+            ],
+            "scale": 0.85,
+            "selectedLayer": 0,
+            "viewCenter": {
+                "x": 288.235294117647,
+                "y": 144.7058823529412
             }
         },
         "Level-02.tmx": {
             "expandedObjectLayers": [
+                3,
                 2
             ],
-            "scale": 0.6887,
+            "scale": 1.031,
+            "selectedLayer": 1,
+            "viewCenter": {
+                "x": 293.8894277400582,
+                "y": 173.61784675072747
+            }
+        },
+        "Level-02.tmx.tmx": {
+            "scale": 1.0522569444444443,
             "selectedLayer": 0,
             "viewCenter": {
-                "x": 321.6204443153768,
-                "y": 185.85741251633516
+                "x": 288.9028213166145,
+                "y": 144.45141065830722
             }
         },
         "Pixel Adventure.tsx": {
@@ -50,10 +68,12 @@
     "property.type": "float",
     "recentFiles": [
         "Pixel Adventure.tsx",
+        "Level-01.tmx",
         "Level-02.tmx",
-        "Level-01.tmx"
+        "Level-01 copy.tmx",
+        "Level-02.tmx.tmx"
     ],
-    "resizeMap.removeObjects": false,
+    "resizeMap.removeObjects": true,
     "tileset.lastUsedFormat": "tsx",
     "tileset.tileSize": {
         "height": 16,

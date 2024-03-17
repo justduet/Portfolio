@@ -39,31 +39,18 @@ class Level extends World with HasGameRef<PixelAdventure> {
   void _scrollingBackground() {
     final backgroundLayer = level.tileMap.getLayer('Background');
     // set the size of each of the tiles in pixels
-    const tileSize = 64;
-    // calculate the number of tiles
-    // needed to cover the entire game area.
-    final numTilesY = (game.size.y / tileSize).floor();
-    final numTilesX = (game.size.x / tileSize).floor();
 
     if (backgroundLayer != null) {
       final backgroundColor =
           backgroundLayer.properties.getValue('BackgroundColor');
 
-      // iterate over tiles
-      // Calculate position for each background tile
-      // Adjust vertical position to ensure proper spacing between rows
-      for (double y = 0; y < game.size.y / numTilesY; y++) {
-        for (double x = 0; x < numTilesX; x++) {
-          // pass in color to background tile
-          // creates background tile with image
-          final backgroundTile = BackgroundTile(
-            color: backgroundColor ?? 'Gray',
-            position: Vector2(x * tileSize, y * tileSize - tileSize),
-          );
-
-          add(backgroundTile);
-        }
-      }
+      // pass in color to background tile
+      // creates background tile with image
+      final backgroundTile = BackgroundTile(
+        color: backgroundColor ?? 'Gray',
+        position: Vector2(0, 0),
+      );
+      add(backgroundTile);
     }
   }
 
@@ -76,6 +63,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
         switch (spawnPoint.class_) {
           case 'Player':
             player.position = Vector2(spawnPoint.x, spawnPoint.y);
+            player.scale.x = 1;
             add(player);
             break;
           case 'Fruit':
@@ -87,7 +75,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
             add(fruit);
             break;
 
-          case 'Saw':
+          case 'Saw' || 'Saw1':
             final isVertical = spawnPoint.properties.getValue('isVertical');
             final offNeg = spawnPoint.properties.getValue('offNeg');
             final offPos = spawnPoint.properties.getValue('offPos');

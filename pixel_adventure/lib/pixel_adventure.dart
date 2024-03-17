@@ -4,47 +4,40 @@ import 'package:flame/components.dart';
 import 'package:flame/events.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:pixel_adventure/components/jump_button.dart';
 import 'package:pixel_adventure/components/player.dart';
 import 'package:pixel_adventure/components/level.dart';
 
 class PixelAdventure extends FlameGame
-    with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection {
+    with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection, TapCallbacks {
   @override
   Color backgroundColor() => const Color(0xFF211F30);
+  
 
-  late final CameraComponent cam;
+  late CameraComponent cam;
   // grab a player reference to use it in game
   Player player = Player(character: 'Mask Dude');
   late JoystickComponent joystick;
-  // IT HAS SOMETHING TO DO WITH JOYSTICK (false = no show)
-  // PROBLEM
-  bool showJoystick = false;
+  bool showControls = false;
+  bool playSounds = true;
+  double soundVolume = 1.0;
+  List<String> levelNames = ['Level-01', 'Level-02'];
+  int currentLevelIndex = 0;
 
   @override
   FutureOr<void> onLoad() async {
+     // debugMode = true;
+
     // Load all images into cache
     await images.loadAllImages();
 
-    // Create the world/level
-    final world = Level(
-      player: player,
-      levelName: 'Level-01',
-    );
-
-    // Set up camera
-    cam = CameraComponent.withFixedResolution(
-      world: world,
-      width: 600,
-      height: 360,
-    );
-    cam.viewfinder.anchor = Anchor.topLeft;
-
-    // Add camera and world to game
-    addAll([cam, world]);
+    // add camera and world to level
+    _loadLevel();
 
     // Add joystick if needed
-    if (showJoystick) {
+    if (showControls) {
       addJoyStick();
+      add(JumpButton());
     }
 
     // Call super onLoad method and return its result
@@ -54,7 +47,7 @@ class PixelAdventure extends FlameGame
   // PROBLEM THE BRACE WAS THE ISSUE super.update in wrong
   @override
   void update(double dt) {
-    if (showJoystick) {
+    if (showControls) {
       updateJoystick();
     }
     super.update(dt);
@@ -62,6 +55,7 @@ class PixelAdventure extends FlameGame
 
   void addJoyStick() {
     joystick = JoystickComponent(
+      priority: 100,
       knob: SpriteComponent(
         sprite: Sprite(
           images.fromCache('HUD/Knob.png'),
@@ -96,8 +90,43 @@ class PixelAdventure extends FlameGame
         player.horizontalMovement = 1;
         break;
       default:
-        player.horizontalMovement = 1;
+        player.horizontalMovement = 0;
         break;
     }
+  }
+
+  void loadNextLevel() {
+    if (currentLevelIndex < levelNames.length - 1) {
+      removeWhere((component) => component is Level);
+      currentLevelIndex++;
+      _loadLevel();
+    } else {
+      // no more levels
+      removeWhere((component) => component is Level);
+      currentLevelIndex = 0;
+      _loadLevel();
+    }
+  }
+
+  void _loadLevel() {
+    Future.delayed(
+        const Duration(seconds: 1,), () {
+      // Create the world/level
+      Level world = Level(
+        player: player,
+        levelName: levelNames[currentLevelIndex],
+      );
+
+      // Set up camera
+      cam = CameraComponent.withFixedResolution(
+        world: world,
+        width: 575,
+        height: 280,
+      );
+      cam.viewfinder.anchor = Anchor.topLeft;
+
+      // Add camera and world to game
+      addAll([cam, world]);
+    });
   }
 }
