@@ -10,8 +10,6 @@ class JumpButton extends SpriteComponent with HasGameRef<PixelAdventure>, TapCal
 
   final margin = 32;
   
-
-
   @override
   Future<void> onLoad() async {
     sprite = Sprite(game.images.fromCache('HUD/JumpButton.png'));

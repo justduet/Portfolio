@@ -4,6 +4,7 @@ import 'package:flame/components.dart';
 import 'package:flame_tiled/flame_tiled.dart';
 import 'package:pixel_adventure/components/background_tile.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
+import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/player.dart';
 import 'package:pixel_adventure/components/saw.dart';
@@ -15,6 +16,9 @@ class Level extends World with HasGameRef<PixelAdventure> {
   final String levelName;
   final Player player;
   Level({required this.levelName, required this.player});
+
+  // create a variable for fruits
+  int fruitCount = 0;
 
   // declare a property that represents the loaded level
   late TiledComponent level;
@@ -73,9 +77,10 @@ class Level extends World with HasGameRef<PixelAdventure> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             add(fruit);
+            fruitCount++;
             break;
 
-          case 'Saw' || 'Saw1':
+          case 'Saw':
             final isVertical = spawnPoint.properties.getValue('isVertical');
             final offNeg = spawnPoint.properties.getValue('offNeg');
             final offPos = spawnPoint.properties.getValue('offPos');
@@ -95,6 +100,19 @@ class Level extends World with HasGameRef<PixelAdventure> {
               size: Vector2(spawnPoint.width, spawnPoint.height),
             );
             add(checkpoint);
+            break;
+
+          case 'Chicken':
+            final offNeg = spawnPoint.properties.getValue(('offNeg'));
+            final offPos = spawnPoint.properties.getValue(('offPos'));
+            final chicken = Chicken(
+              position: Vector2(spawnPoint.x, spawnPoint.y),
+              size: Vector2(spawnPoint.width, spawnPoint.height),
+              offNeg: offNeg,
+              offPos: offPos,
+            );
+            add(chicken);
+
             break;
 
           default:
@@ -128,6 +146,7 @@ class Level extends World with HasGameRef<PixelAdventure> {
         }
       }
     }
+    player.totalFruit = fruitCount;
     player.collisionBlocks = collisionBlocks;
   }
 }

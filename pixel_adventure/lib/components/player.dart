@@ -1,13 +1,16 @@
 import 'dart:async';
 
+
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/services.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
+import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/custom_hitbox.dart';
 import 'package:pixel_adventure/components/fruit.dart';
+import 'package:pixel_adventure/components/level.dart';
 import 'package:pixel_adventure/components/saw.dart';
 import 'package:pixel_adventure/components/utils.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
@@ -30,6 +33,9 @@ class Player extends SpriteAnimationGroupComponent
     // default
     this.character = 'Mask Dude',
   }) : super(position: position);
+
+  late final Level level;
+  late int totalFruit;
 
   final double stepTime = 0.05;
   // sets up placeholders
@@ -79,11 +85,12 @@ class Player extends SpriteAnimationGroupComponent
 
   @override
   FutureOr<void> onLoad() {
+    //debugMode = true;
     // call the method that will do everything for us
     _loadAllAnimations();
     // debugMode = true;
 
-    // position when player is added (it's a reference0
+    // position when player is added (it's a reference)
     startingPosition = Vector2(position.x, position.y);
     add(RectangleHitbox(
       position: Vector2(hitbox.offsetX, hitbox.offsetY),
@@ -133,10 +140,21 @@ class Player extends SpriteAnimationGroupComponent
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
     if (!reachedCheckpoint) {
-      if (other is Fruit) other.collidedWithPlayer();
-      if (other is Saw) _respawn();
-      if (other is Checkpoint && !reachedCheckpoint) _reachedCheckpoint();
+      if (other is Fruit) {
+        other.collidedWithPlayer();
+        // Decrement the total number of fruits when a collision with a fruit occurs
+        totalFruit--;
+        // problem with how fruit is subtracting...
+        print('Total fruit: ${totalFruit}');
+      }
     }
+    if (other is Saw) _respawn();
+    if (other is Chicken) other.collidedWithPlayer();
+    // Check if there are no fruits left and trigger the reached checkpoint
+    if (totalFruit == 0 && other is Checkpoint && !reachedCheckpoint) {
+      _reachedCheckpoint();
+    } // Call the checkpoint logic from the player
+
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -351,5 +369,9 @@ class Player extends SpriteAnimationGroupComponent
     const waitToChangeDuration = Duration(seconds: 1);
 
     Future.delayed(waitToChangeDuration, () => game.loadNextLevel());
+  }
+
+  void collidedwithEnemy() {
+    _respawn();
   }
 }

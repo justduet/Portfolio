@@ -7,6 +7,7 @@ import 'package:pixel_adventure/pixel_adventure.dart';
 
 class Checkpoint extends SpriteAnimationComponent
     with HasGameRef<PixelAdventure>, CollisionCallbacks {
+
   Checkpoint({
     position,
     size,
@@ -20,7 +21,6 @@ class Checkpoint extends SpriteAnimationComponent
       size: Vector2(12, 8),
       collisionType: CollisionType.passive,
     ));
-
     animation = SpriteAnimation.fromFrameData(
       game.images
           .fromCache('Items/Checkpoints/Checkpoint/Checkpoint (No Flag).png'),
@@ -33,10 +33,12 @@ class Checkpoint extends SpriteAnimationComponent
     return super.onLoad();
   }
 
+ 
+
   @override
   void onCollisionStart(
       Set<Vector2> intersectionPoints, PositionComponent other) {
-    if (other is Player) _reachedCheckpoint();
+    if (other is Player && game.player.totalFruit == 0) _reachedCheckpoint();
     super.onCollisionStart(intersectionPoints, other);
   }
 

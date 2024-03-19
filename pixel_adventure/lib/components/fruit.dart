@@ -16,14 +16,12 @@ class Fruit extends SpriteAnimationComponent
   // It takes named parameters: fruit, position, and size.
   // The default value for fruit is 'Apple'.
   // The position and size parameters are passed to the superclass constructor.
-  Fruit({this.fruit = 'Apple', position, size})
-      : super(
-          position: position,
-          size: size, // Initialize the position of the fruit.
-        );
+  Fruit({this.fruit = 'Apple', super.position, super.size});
 
   // Define a constant for the step time of the animation.
   final double stepTime = 0.05;
+  final double disappearingTime = 0.01;
+
   final hitbox = CustomHitbox(
     offsetX: 10,
     offsetY: 10,
@@ -36,7 +34,7 @@ class Fruit extends SpriteAnimationComponent
   // Override the onLoad method to load the sprite animation.
   @override
   FutureOr<void> onLoad() {
-    // debugMode = true;
+   // debugMode = true;
     priority = -1;
 
     add(RectangleHitbox(
@@ -67,8 +65,8 @@ class Fruit extends SpriteAnimationComponent
       animation = SpriteAnimation.fromFrameData(
         game.images.fromCache('Items/Fruits/Collected.png'),
         SpriteAnimationData.sequenced(
-          amount: 6,
-          stepTime: stepTime,
+          amount: 5,
+          stepTime: disappearingTime,
           textureSize: Vector2.all(32),
           loop: false,
         ),
