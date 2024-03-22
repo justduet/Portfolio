@@ -1,6 +1,5 @@
 import 'dart:async';
 
-
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
@@ -10,7 +9,6 @@ import 'package:pixel_adventure/components/chicken.dart';
 import 'package:pixel_adventure/components/collision_block.dart';
 import 'package:pixel_adventure/components/custom_hitbox.dart';
 import 'package:pixel_adventure/components/fruit.dart';
-import 'package:pixel_adventure/components/level.dart';
 import 'package:pixel_adventure/components/saw.dart';
 import 'package:pixel_adventure/components/utils.dart';
 import 'package:pixel_adventure/pixel_adventure.dart';
@@ -28,14 +26,15 @@ enum PlayerState {
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<PixelAdventure>, KeyboardHandler, CollisionCallbacks {
   String character;
+ 
   Player({
-    position,
-    // default
-    this.character = 'Mask Dude',
+    this.character = 'Pink Man',
+    Vector2? position,
   }) : super(position: position);
 
-  late final Level level;
   late int totalFruit;
+  // add a life counter and display
+  int lifeCount = 3;
 
   final double stepTime = 0.05;
   // sets up placeholders
@@ -103,7 +102,7 @@ class Player extends SpriteAnimationGroupComponent
   void update(double dt) {
     accumulatedTime += dt;
     while (accumulatedTime > fixedDeltaTime) {
-      if (!gotHit && !reachedCheckpoint) {
+      if (!gotHit && !reachedCheckpoint && lifeCount!=0) {
         _updatePlayerState();
         _updatePlayerMovement(fixedDeltaTime);
         _checkHorizontalCollisions();
@@ -147,14 +146,15 @@ class Player extends SpriteAnimationGroupComponent
         // problem with how fruit is subtracting...
         print('Total fruit: ${totalFruit}');
       }
+
+      if (other is Saw) _respawn();
+      if (other is Chicken) other.collidedWithPlayer();
     }
-    if (other is Saw) _respawn();
-    if (other is Chicken) other.collidedWithPlayer();
     // Check if there are no fruits left and trigger the reached checkpoint
     if (totalFruit == 0 && other is Checkpoint && !reachedCheckpoint) {
       _reachedCheckpoint();
-    } // Call the checkpoint logic from the player
-
+      // Call the checkpoint logic from the player
+    }
     super.onCollisionStart(intersectionPoints, other);
   }
 
@@ -343,10 +343,18 @@ class Player extends SpriteAnimationGroupComponent
     await animationTicker?.completed;
     animationTicker?.reset();
 
-    velocity = Vector2.zero();
+    lifeCount--;
+    print('Life Count: $lifeCount');
+
+
+
+    if(lifeCount!= 0){velocity = Vector2.zero();
     position = startingPosition;
     _updatePlayerState();
     Future.delayed(canMoveDuration, () => gotHit = false);
+    } else{
+      //add death logic
+    }
   }
 
   void _reachedCheckpoint() async {
