@@ -13,10 +13,9 @@ class PixelAdventure extends FlameGame
   @override
   Color backgroundColor() => const Color(0xFF211F30);
   
-
   late CameraComponent cam;
   // grab a player reference to use it in game
-  Player player = Player(character: 'Mask Dude');
+  Player player = Player();
   late JoystickComponent joystick;
   bool showControls = false;
   bool playSounds = true;
