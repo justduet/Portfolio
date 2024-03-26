@@ -2,6 +2,7 @@
 # CMD + , = settings
 # CMD + / = comment chunk
 # CMD + d = select multiple instances of word to bulk change
+# CMD + b = close side panel
 # formatting: autopep8 --in-place <filename>.py
 # 3 dots, clear terminal
 
