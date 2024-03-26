@@ -1,14 +1,3 @@
-# Given a list of locations and temperatures:
-# create field (what_to_wear)
-# if temp < 15C then add 'jumper'
-# if temp > OR == 15C then add 'tshirt'
-# write a script that reads a csv
-# fills in field (what_to_wear)
-# publishes a new file
-# copy whole file into output
-# add heading field
-# populate
-
 import csv
 
 # reference both files
