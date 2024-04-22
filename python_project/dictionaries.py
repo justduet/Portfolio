@@ -76,3 +76,18 @@ print(band2)
 # or use the dict constructor function
 band3 = dict(band)
 print("Good copy!")
+
+# nested dictionaries
+member1 = {"name": "Plant",
+           "instrument": "vocals"}
+member2 = {"name": "Page",
+           "instrument": "guitar"}
+band = {
+    "member1": member1,
+    "member2": member2
+}
+
+print(band)
+
+# access values
+print(band["member1"]["name"])
