@@ -98,9 +98,9 @@ newlist.append('Neil')
 newtuple = tuple(newlist)
 
 # unpacking a tuple
-# this tupe will hold
+# this tuple will hold
 # the values of original anothertuple
-
+anothertuple = (1, 2, 3)
 (one, two, *hey) = anothertuple
 print(one)
 print(two)
