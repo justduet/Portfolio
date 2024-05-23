@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
+
 import 'package:flutter/services.dart';
 import 'package:pixel_adventure/components/checkpoint.dart';
 import 'package:pixel_adventure/components/chicken.dart';
@@ -26,7 +27,7 @@ enum PlayerState {
 class Player extends SpriteAnimationGroupComponent
     with HasGameRef<PixelAdventure>, KeyboardHandler, CollisionCallbacks {
   String character;
- 
+
   Player({
     this.character = 'Pink Man',
     Vector2? position,
@@ -102,7 +103,7 @@ class Player extends SpriteAnimationGroupComponent
   void update(double dt) {
     accumulatedTime += dt;
     while (accumulatedTime > fixedDeltaTime) {
-      if (!gotHit && !reachedCheckpoint && lifeCount!=0) {
+      if (!gotHit && !reachedCheckpoint && lifeCount != 0) {
         _updatePlayerState();
         _updatePlayerMovement(fixedDeltaTime);
         _checkHorizontalCollisions();
@@ -346,13 +347,12 @@ class Player extends SpriteAnimationGroupComponent
     lifeCount--;
     print('Life Count: $lifeCount');
 
-
-
-    if(lifeCount!= 0){velocity = Vector2.zero();
-    position = startingPosition;
-    _updatePlayerState();
-    Future.delayed(canMoveDuration, () => gotHit = false);
-    } else{
+    if (lifeCount != 0) {
+      velocity = Vector2.zero();
+      position = startingPosition;
+      _updatePlayerState();
+      Future.delayed(canMoveDuration, () => gotHit = false);
+    } else {
       //add death logic
     }
   }

@@ -1,6 +1,6 @@
 import csv
 
-# reference both files
+# reference both file paths
 input_path = 'input.csv'
 output_path = 'output.csv'
 base_temperature = 15
@@ -23,8 +23,7 @@ with open(input_path, 'r') as input_file:
     for row in rows[1:]:
         if int(row[1]) < base_temperature:
             row.append('jumper')
-
-        elif int(row[1]) >= base_temperature:
+        else:
             row.append('tshirt')
 
 

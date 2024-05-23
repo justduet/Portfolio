@@ -4,9 +4,13 @@
 # Compare the user's choice with the computer's choice to determine the winner.
 # Display the result.
 
+# created a global variable to count number of games
+
 import sys
 import random
 from enum import Enum
+
+game_count = 0
 
 
 def play_rps():
@@ -17,8 +21,8 @@ def play_rps():
         SCISSORS = 'scissors'
 
     # Mapping dictionary for player's input
-    player_choices = {'r': Choice.ROCK.value,
-                      'p': Choice.PAPER.value, 's': Choice.SCISSORS.value}
+    player_choices = {'r': Choice.ROCK,
+                      'p': Choice.PAPER, 's': Choice.SCISSORS}
 
     player_choice_input = input(
         '\nPlease enter a value:\n(r/p/s)\n')
@@ -36,20 +40,30 @@ def play_rps():
         computerchoice = random.choice(list(Choice))
         computer = str(computerchoice.value)
 
-        print('\nYou chose ' + player_choice + '.')
+        print('\nYou chose ' + player_choice.value + '.')
         print('Python chose ' + computer + '.')
 
-        if player_choice == computer:
-            print('\n😮It\'s a tie!')
-        elif player_choice == Choice.ROCK.value and computer == 'scissors':
-            print(
-                '🎉You win! Caveman use BIG ROCK \nto BREAK advanced tool\nnamed \'SCISSORS\' ')
-        elif player_choice == Choice.PAPER.value and computer == 'rock':
-            print('🎉You win! Even though rock\nwould TOTES crush paper')
-        elif player_choice == Choice.SCISSORS.value and computer == 'paper':
-            print('🎉You win! It takes BIG BRAIN ENERGY\nto use THAT move')
-        else:
-            print('🐍You lose...but idk why')
+        def decide_winner(player_choice, computerchoice):
+
+            if player_choice == computerchoice:
+                return ('\n😮It\'s a tie!')
+            elif player_choice == Choice.ROCK and computer == 'scissors':
+                return (
+                    '🎉You win! \n\nCaveman use BIG ROCK \nto BREAK advanced tool\nnamed \'SCISSORS\' ')
+            elif player_choice == Choice.PAPER and computer == 'rock':
+                return ('🎉You win! \n\nEven though rock\nwould TOTES crush paper')
+            elif player_choice == Choice.SCISSORS and computer == 'paper':
+                return ('🎉You win! \n\nIt takes BIG BRAIN ENERGY\nto use THAT move')
+            else:
+                return ('🐍You lose...but idk why')
+
+        game_result = decide_winner(player_choice, computerchoice)
+        print(game_result)
+
+        global game_count
+        game_count += 1
+
+        print("\nGame count: " + str(game_count))
 
         play_again = input(
             "\nDo you want to play again? \n(yes/no): ").lower()

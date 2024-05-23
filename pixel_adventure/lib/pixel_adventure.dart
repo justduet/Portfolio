@@ -9,10 +9,14 @@ import 'package:pixel_adventure/components/player.dart';
 import 'package:pixel_adventure/components/level.dart';
 
 class PixelAdventure extends FlameGame
-    with HasKeyboardHandlerComponents, DragCallbacks, HasCollisionDetection, TapCallbacks {
+    with
+        HasKeyboardHandlerComponents,
+        DragCallbacks,
+        HasCollisionDetection,
+        TapCallbacks {
   @override
   Color backgroundColor() => const Color(0xFF211F30);
-  
+
   late CameraComponent cam;
   // grab a player reference to use it in game
   Player player = Player();
@@ -25,7 +29,7 @@ class PixelAdventure extends FlameGame
 
   @override
   FutureOr<void> onLoad() async {
-     // debugMode = true;
+    // debugMode = true;
 
     // Load all images into cache
     await images.loadAllImages();
@@ -109,7 +113,9 @@ class PixelAdventure extends FlameGame
 
   void _loadLevel() {
     Future.delayed(
-        const Duration(seconds: 1,), () {
+        const Duration(
+          seconds: 1,
+        ), () {
       // Create the world/level
       Level world = Level(
         player: player,
